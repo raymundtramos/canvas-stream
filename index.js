@@ -15,7 +15,9 @@ app.get('/socket.io.js', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-
+    socket.on('draw', function(data) {
+        socket.broadcast.emit('draw', data);
+    });
 });
 
 server.listen(process.env.PORT || 3000);
